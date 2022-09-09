@@ -3,7 +3,7 @@ import model.DAO.*;
 
 public class GerirUsuario 
 {
-	public String VerificaExistenciaUser(String codUsuario)
+	public static String VerificaExistenciaUser(String codUsuario)
 	{
 		boolean existeUsuario=false;
 		DBuser dbUser = new DBuser();

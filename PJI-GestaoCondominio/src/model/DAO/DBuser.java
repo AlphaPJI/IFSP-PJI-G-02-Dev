@@ -19,12 +19,37 @@ public class DBuser
 	static String comentario9 = "\nO novo parquinho está muito bom, meu filho adorou. \nDATA: 28/08/2022 \nPOR: ELIZABETH WEBBER, 62B";
 	static String comentario10 = "\nAcho que o prédio deveria ter uma churrasqueira nova. \nDATA: 20/08/2022 \nPOR: FERNANDO CARVALHO, 64D";
 
-	public void acessaDBUSer (String codUsuario)
-	{
-		String nomeUser;
-	
+	public static String verificaUsuario (String codUsuario) {
+		int verificaUsuario = 0;
+		
+		switch(codUsuario) {
+		
+		case "Cesar Cohen":
+			verificaUsuario=1;
+		break;
+		
+		case "Beatrice Portinari":
+			verificaUsuario=1;
+		break;
+		
+		case "Brulio Cevero":
+			verificaUsuario=1;
+		break;
+		
+		default:
+			verificaUsuario=0;
+		break;		
+		}
+		
+		if(verificaUsuario==1) {
+			return codUsuario;
+		} else {
+			JOptionPane.showMessageDialog(null, "Usuario não existe");
+			System.exit(0);
+			return codUsuario;
+		}
 	}
-	
+
 	public static String acessaForum (String forum)
 	{
 
@@ -71,7 +96,7 @@ public class DBuser
 			break;
 			
 			default:
-			JOptionPane.showMessageDialog(null, "Forúm não existe");
+			JOptionPane.showMessageDialog(null, "Fórum não existe");
 			break;
 		}
 		return forum;

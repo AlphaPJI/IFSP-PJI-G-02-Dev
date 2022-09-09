@@ -9,8 +9,8 @@ public class AppGestaoCondominio
 		Tela telaEntrada = new Tela();
 		telaEntrada.BoasVindas();
 		
-		String codUser = telaEntrada.TelaUsuario();
+		telaEntrada.TelaUsuario();
 		
-		String forum = telaEntrada.Forum();
+		telaEntrada.Forum();
 	}
 }
