@@ -14,10 +14,10 @@ public class DBuser
 	static String comentario4 = "\nEm outubro, teremos uma festinha de Halloween paras crianças! \nDATA: 30/08/2022 \nPOR: JOUI JOUKI";
 	static String comentario5 = "\nAcho que deveria ter sala de games. \nDATA: 31/08/2022 \nPOR: CESAR COHEN, 10D";
 	static String comentario6 = "\nFamilia, meu cachorro fugiu, se alguém ver ele, não chegue perto. \nDATA: 17/08/2022 \nPOR: THIAGO FRITZ, 35A";
-	static String comentario7 = "\nO vizinho está com goteiras que estão estragando o teto do meu banheiro. \nDATA: 19/08/2022 \nPOR: ERIN PARKER, 43B";
-	static String comentario8 = "\nEm outubro, teremos uma festinha de Halloween paras crianças! \nDATA: 30/08/2022 \nPOR: DANTE GASPAR, 82C";
-	static String comentario9 = "\nO novo parquinho está muito bom, meu filho adorou. \nDATA: 28/08/2022 \nPOR: ELIZABETH WEBBER, 62B";
-	static String comentario10 = "\nAcho que o prédio deveria ter uma churrasqueira nova. \nDATA: 20/08/2022 \nPOR: FERNANDO CARVALHO, 64D";
+	static String comentario7 = "\nComo foi o final de semana de vocês? \nDATA: 11/08/2022, POR: ERIN PARKER, 43B\n\n=====================Respostas=====================\nEu fiz yoga \nDATA: 11/08/2022, POR: JOUI JOUKI, 59D";
+	static String comentario8 = "\nAcho que o prédio deveria ser roxo \nDATA: 14/09/2022, POR: CESAR COHEN, 12a\n\n=====================Respostas=====================\nAcho que não, por mim seria verde \nDATA: 14/09/2022, POR: ARTHUR CEVERO, 12C";
+	static String comentario9 = "\nReunião as 14h00 sobre a festa de dia das crianças. \nDATA: 01/10/2022 \nPOR: SÍNDICO SIDNEY, 10E";
+	static String comentario10 = "\nTo com sono. \nDATA: 20/08/2022 \nPOR: LUCIANO CARVALHO, 64D";
 
 	public static String verificaUsuario (String codUsuario) {
 		int verificaUsuario = 0;
