@@ -1,16 +1,16 @@
 package controller;
 import view.Tela;
+import model.DAO.ConexaoBD;
+import model.DAO.ContaDAO;
 
 public class AppGestaoCondominio 
 {
 
 	public static void main(String[] args) 
 	{
-		Tela telaEntrada = new Tela();
-		telaEntrada.BoasVindas();
+		ContaDAO conta = new ContaDAO();
+		conta.read();
 		
-		telaEntrada.TelaUsuario();
 		
-		telaEntrada.Forum();
 	}
 }
