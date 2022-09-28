@@ -15,11 +15,11 @@ private static final String banco = "GestaoDeCondominio";
 private static final String timezone = "?useTimezone=true&serverTimezone=UTC";
 private static final String url = "jdbc:mysql://" + servidor + "/" + banco + timezone;
 private static final String usuario = "root";
-private static final String senha = "Mariaeduarda28";
+private static final String senha = "Riomar123";
 
 public static Connection getConexao() {
 Connection connection = null;
-System.out.println("Chamou conexão");
+System.out.println("Chamou conexao");
 try {
 Class.forName(driver);
 

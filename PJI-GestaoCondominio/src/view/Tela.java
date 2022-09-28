@@ -1,7 +1,6 @@
 package view;
 import javax.swing.JOptionPane;
-
-import model.Condominio.GerirUsuario;
+import model.DAO.ContaDAO;
 import model.DAO.DBuser;
 
 public class Tela 
@@ -13,8 +12,12 @@ public class Tela
 	
 	public void TelaUsuario ()
 	{
-		String codUsuario = JOptionPane.showInputDialog(null, "Por favor, insira o seu usuário: ");
-		codUsuario = DBuser.verificaUsuario(codUsuario);
+
+		String codEmail = JOptionPane.showInputDialog(null, "Insira o seu email: ");
+		codEmail = ContaDAO.Email(codEmail);
+		String codSenha = JOptionPane.showInputDialog(null, "Insira a sua senha: ");
+		codSenha = ContaDAO.Senha(codSenha);
+		String codUsuario = ContaDAO.Usuario(codEmail);
 		JOptionPane.showMessageDialog(null, "Bem vindo(a) " +codUsuario);
 	}
 	

@@ -19,37 +19,7 @@ public class DBuser
 	static String comentario9 = "\nReunião as 14h00 sobre a festa de dia das crianças. \nDATA: 01/10/2022 \nPOR: SÍNDICO SIDNEY, 10E";
 	static String comentario10 = "\nTo com sono. \nDATA: 20/08/2022 \nPOR: LUCIANO CARVALHO, 64D";
 
-	public static String verificaUsuario (String codUsuario) {
-		int verificaUsuario = 0;
-		
-		switch(codUsuario) {
-		
-		case "Cesar Cohen":
-			verificaUsuario=1;
-		break;
-		
-		case "Beatrice Portinari":
-			verificaUsuario=1;
-		break;
-		
-		case "Brulio Cevero":
-			verificaUsuario=1;
-		break;
-		
-		default:
-			verificaUsuario=0;
-		break;		
-		}
-		
-		if(verificaUsuario==1) {
-			return codUsuario;
-		} else {
-			JOptionPane.showMessageDialog(null, "Usuario não existe");
-			System.exit(0);
-			return codUsuario;
-		}
-	}
-
+	
 	public static String acessaForum (String forum)
 	{
 
