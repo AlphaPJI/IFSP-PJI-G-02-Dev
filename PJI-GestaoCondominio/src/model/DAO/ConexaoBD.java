@@ -15,17 +15,17 @@ private static final String banco = "GestaoDeCondominio";
 private static final String timezone = "?useTimezone=true&serverTimezone=UTC";
 private static final String url = "jdbc:mysql://" + servidor + "/" + banco + timezone;
 private static final String usuario = "root";
-private static final String senha = "Riomar123";
+private static final String senha = "Mariaeduarda28";
 
 public static Connection getConexao() {
 Connection connection = null;
-System.out.println("Chamou conexao");
+System.out.println("Chamou conexão");
 try {
 Class.forName(driver);
 
 //connection = (Connection) DriverManager.getConnection(url, usuario, senha);
 connection = DriverManager.getConnection(url, usuario, senha);
-System.out.println("conexao OK");
+System.out.println("A conexão está funcionando");
 return connection;
 } catch (ClassNotFoundException | SQLException e) {
 System.out.println(e);
