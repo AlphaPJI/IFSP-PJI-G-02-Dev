@@ -15,12 +15,22 @@ public class Cadastro {
 	public static void LoginOuCadastro(String codLoginCadastro){
 		String login = "L";
 		String registro = "C";
+		String morador = "M";
+		String sindico = "S";
 		if(codLoginCadastro.equalsIgnoreCase(login)) {
 			Tela tela = new Tela();
 			tela.TelaUsuario();
 		}else if(codLoginCadastro.equalsIgnoreCase(registro)) {
-			Cadastro cadastro = new Cadastro();
-			cadastro.Cadastrar();
+			String codMoradorSindico = JOptionPane.showInputDialog(null, "Deseja cadastrar-se como Morador ou Sindico\n[M] para Morador\n[S] para Sindico");
+			if(codMoradorSindico.equalsIgnoreCase(morador)) {
+				Cadastro cadastro = new Cadastro();
+				cadastro.Cadastrar();
+			}else if(codMoradorSindico.equalsIgnoreCase(sindico)) {
+				JOptionPane.showMessageDialog(null, "Work In Progress...");
+				System.exit(0);
+			}else
+				JOptionPane.showMessageDialog(null, "Opção inválida");
+			
 		}else
 		JOptionPane.showMessageDialog(null, "Opção inválida");
 		System.exit(0);
