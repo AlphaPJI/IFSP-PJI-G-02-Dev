@@ -1,5 +1,10 @@
 package controller;
+import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
+
 import model.Condominio.Conta;
+import model.DAO.Cadastro;
 import model.DAO.ContaD;
 import view.Tela;
 

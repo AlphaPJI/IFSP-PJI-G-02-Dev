@@ -1,5 +1,11 @@
 package model.DAO;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import javax.swing.JOptionPane;
 
 import model.Condominio.Conta;
@@ -31,21 +37,52 @@ public class Cadastro {
 		String apartamento = JOptionPane.showInputDialog(null, "Apartamento: ");
 		String bloco = JOptionPane.showInputDialog(null, "Bloco: ");
 		
+		Cadastro cadastro = new Cadastro();
+		int id = cadastro.id();
+		
+		System.out.println("-"+id++);
+		
 		ContaD contaDao = new ContaD();
 		Conta contaD = new Conta();
-		contaD.setId(99);
-		contaD.setNome("Cain");
-		contaD.setEmail("cain@gmail.com");
-		contaD.setSenha("Maria");
-		contaD.setCpf("1234567");
-		contaD.setRg("654321X");
+		contaD.setId(id++);
+		contaD.setNome(nome);
+		contaD.setEmail(email);
+		contaD.setSenha(senha);
+		contaD.setCpf(cpf);
+		contaD.setRg(rg);
 		contaD.setVerificarEmail(true);
 		contaD.setVerificado(true);
 		contaD.setAdministrador(false);
-		contaD.setApartamento("89");
-		contaD.setBloco("Bloco C");
+		contaD.setApartamento(apartamento);
+		contaD.setBloco(bloco);
 		contaDao.save(contaD);
 		
+	}
+	
+	
+	public int id() {
+		ConexaoBD con = new ConexaoBD();
+		Connection c;
+		c = con.getConexao();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = null;
+		query = "SELECT * FROM Conta";
+		
+		int id = 0;
+		
+		try {
+			ps = c.prepareStatement(query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				id = rs.getInt("id");
+				System.out.println("- " + id);
+			}
+			return id;
+			} catch (SQLException e) {
+			e.printStackTrace();
+			}
+		return id;
 	}
 
 }
