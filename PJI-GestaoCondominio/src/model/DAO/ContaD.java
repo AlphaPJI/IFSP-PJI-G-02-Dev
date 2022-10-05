@@ -42,5 +42,36 @@ public class ContaD {
 					}
 				}
 	}
+	public void update(Conta conta) {
+		String sql = "UPDATE Conta SET senha = ? "+
+		"WHERE email = '"+conta.getEmail()+"'";
+			Connection conn = null;
+			PreparedStatement pstm = null;
+			System.out.println("Conexão para alteração de senha funcionando");
+		
+				try {
+					conn = ConexaoBD.getConexao();
+					pstm = conn.prepareStatement(sql);
+						pstm.setString(1, conta.getNovaSenha());
+						// email q deseja atualizar
+						//pstm.setString(2, email);
+						
+						pstm.execute();
+				}catch (Exception e) {
+					e.printStackTrace();
+				}finally {
+					try {
+						if(pstm!=null) {
+							pstm.close();
+						}
+						if(conn!=null) {
+							conn.close();
+						}
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+		
+	}
 
 }

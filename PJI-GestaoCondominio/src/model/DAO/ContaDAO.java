@@ -9,6 +9,9 @@ import model.DAO.ConexaoBD;
 
 public class ContaDAO {
 	
+	
+
+	
 	public static String Usuario(String codEmail){
 		ConexaoBD con = new ConexaoBD();
 		Connection c;
@@ -40,66 +43,62 @@ public class ContaDAO {
 		return null;
 	}
 	
-	public static String Email(String codEmail){
+	public static int Email(String email){
 		ConexaoBD con = new ConexaoBD();
 		Connection c;
 		c = con.getConexao();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String query = null;
-		query = "SELECT * FROM Conta";
+		String sqlQuery = null;
+		sqlQuery = "SELECT * FROM conta WHERE email = '" + email + "'";;
 		
-		String[] email = new String[40];
+		String[] emailBD = new String[40];
 		
 		try {
-			ps = c.prepareStatement(query);
+			ps = c.prepareStatement(sqlQuery);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				int x=0;
-				email[x] = rs.getString("email");
-				System.out.println("- " + email[x]);
-				if(email[x].equals(codEmail)) {
-					return email[x];
+				emailBD[x] = rs.getString("email");
+				System.out.println("- " + emailBD[x]);
+				if(emailBD[x].equals(email)) {
+					return 1;
 				}
 				x++;
 			}
 			} catch (SQLException e) {
 			e.printStackTrace();
-			}
-		JOptionPane.showMessageDialog(null, "Email inválido");
-		System.exit(0);
-		return null;
+			}	
+		return 0;
 	}
 	
-	public static String Senha(String codSenha){
+	public static int Senha(String senha){
 		ConexaoBD con = new ConexaoBD();
 		Connection c;
 		c = con.getConexao();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String query = null;
-		query = "SELECT * FROM Conta";
+		String sqlQuery = null;
+		sqlQuery =  "SELECT * FROM conta WHERE senha = '" + senha + "'";
 		
-		String[] senha = new String[40];
+		String[] senhaBD = new String[40];
 		
 		try {
-			ps = c.prepareStatement(query);
+			ps = c.prepareStatement(sqlQuery);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				int x=0;
-				senha[x] = rs.getString("senha");
-				System.out.println("- " + senha[x]);
-				if(senha[x].equalsIgnoreCase(codSenha)) {
-					return senha[x];
+				senhaBD[x] = rs.getString("senha");
+				System.out.println("- " + senhaBD[x]);
+				if(senhaBD[x].equalsIgnoreCase(senha)) {
+					return 1;
 				}
 				x++;
 			}
 			} catch (SQLException e) {
 			e.printStackTrace();
 			}
-		JOptionPane.showMessageDialog(null, "Senha incorreta");
-		System.exit(0);
-		return null;
+		return 0;
 	}
 	
 }

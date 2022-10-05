@@ -12,7 +12,14 @@ public class Conta {
 		private boolean administrador;
 		private String apartamento;
 		private String bloco;
+		private String novaSenha;
 		
+		public String getNovaSenha() {
+			return novaSenha;
+		}
+		public void setNovaSenha(String novaSenha) {
+			this.novaSenha = novaSenha;
+		}
 		public int getId() {
 			return id;
 		}

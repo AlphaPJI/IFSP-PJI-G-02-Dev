@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.JOptionPane;
 
@@ -19,7 +18,7 @@ public class Cadastro {
 		String sindico = "S";
 		if(codLoginCadastro.equalsIgnoreCase(login)) {
 			Tela tela = new Tela();
-			tela.TelaUsuario();
+			tela.loginUsuario();
 		}else if(codLoginCadastro.equalsIgnoreCase(registro)) {
 			String codMoradorSindico = JOptionPane.showInputDialog(null, "Deseja cadastrar-se como Morador ou Sindico\n[M] para Morador\n[S] para Sindico");
 			if(codMoradorSindico.equalsIgnoreCase(morador)) {
