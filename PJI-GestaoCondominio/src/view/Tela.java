@@ -9,13 +9,17 @@ import model.DAO.DBuser;
 
 public class Tela 
 {
-	public Tela()
+	public void boasVindas()
 	{
 		JOptionPane.showMessageDialog(null, "Bem vindo ao sistema de Gestão de Condominio!");
 	}
 	
 	public void TelaLoginCadastro(){
-		String codLoginCadastro = JOptionPane.showInputDialog(null, "Deseja fazer Login ou Cadastrar novo usuario\n[L] para Login\n[C] para Cadastrar-se");
+		String[] escCodLoginCadastro = { "Login", "Cadastrar" };
+		int codLoginCadastro = JOptionPane.showOptionDialog(null, "Deseja fazer Login ou Cadastrar novo usuario?", "Gestão de Condominio",
+		JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+		null, escCodLoginCadastro, escCodLoginCadastro[0]);		
+		System.out.println("--"+codLoginCadastro);
 		Cadastro.LoginOuCadastro(codLoginCadastro);
 		loginUsuario();
 	}
@@ -23,12 +27,11 @@ public class Tela
 	public void loginUsuario ()
 	{		
 		Conta conta = new Conta();		
-
 		String email = obtemEmail();
 		String senha = obtemSenha();
 		
 		conta.setEmail(email);
-		conta.setSenha(senha);	
+		conta.setSenha(senha);
 		
 		String usuario = ContaDAO.Usuario(conta.getEmail());
 		conta.setNome(usuario);
@@ -40,19 +43,32 @@ public class Tela
 		String email;
 		int valor_correto_OK = 0;
 		int email_correto = 0;
+		int cont = 0;
 		do {
+			if(cont>=3) {
+				String[] escEscolhaEmail = { "Sim", "Continuar tentando", "Cancelar"};
+				int escolhaEmail = JOptionPane.showOptionDialog(null, "Deseja alterar o email?", "Gestão de Condomio", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE,
+				null, escEscolhaEmail, escEscolhaEmail[0]);
+				if(escolhaEmail==0) {
+					novoEmail();
+				} else if(escolhaEmail==2) {
+					System.exit(0);
+				}
+			
+			}
 			email = (JOptionPane.showInputDialog(null, "Insira o seu email: "));
 			if (!email.equals(null)) {
 				email_correto = ContaDAO.Email(email);		
 				if (email.equals("")) {					
-					JOptionPane.showMessageDialog(null, "Voce nao inseriu seu email");
+					JOptionPane.showMessageDialog(null, "Você não informou seu email", "Alerta", JOptionPane.ERROR_MESSAGE);
 				} 
 				if(email_correto==1){
 					valor_correto_OK = 1;
 				} else {
-					JOptionPane.showMessageDialog(null, "Email incorreto");
+					JOptionPane.showMessageDialog(null, "Email incorreto", "Alerta", JOptionPane.ERROR_MESSAGE);
 				}
 			}
+			cont++;
 		} while (valor_correto_OK==0);
 		return email;
 		
@@ -60,27 +76,30 @@ public class Tela
 	
 	public String obtemSenha() {
 		String senha;
-		String alterarSenha = "S";
 		int valor_correto_OK = 0;
 		int cont = 0;
 		int senha_correta = 0;
 		do {			
 			if(cont>=3) {
-				String escolhaSenha = JOptionPane.showInputDialog(null, "Deseja alterar a senha?\n[S] Sim\n[N] Não");
-				if(escolhaSenha.equalsIgnoreCase(alterarSenha)) {
+				String[] escEscolhaSenha = { "Sim", "Continuar tentando", "Cancelar"};
+				int escolhaSenha = JOptionPane.showOptionDialog(null, "Deseja alterar a senha?", "Gestão de Condomio", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+				null, escEscolhaSenha, escEscolhaSenha[0]);
+				if(escolhaSenha==0) {
 					novaSenha();
+				} else if(escolhaSenha==2) {
+					System.exit(0);
 				}
 			}
 			senha = (JOptionPane.showInputDialog(null, "Insira a sua senha: "));
 			if (!senha.equals(null)) {
 				senha_correta = ContaDAO.Senha(senha);
 				if (senha.equals("")) {					
-					JOptionPane.showMessageDialog(null, "Voce nao informou sua senha");
+					JOptionPane.showMessageDialog(null, "Você não informou sua senha", "Alerta", JOptionPane.ERROR_MESSAGE);
 				}
 				if(senha_correta==1){
 					break;
 				}else {
-					JOptionPane.showMessageDialog(null, "Senha incorreta");
+					JOptionPane.showMessageDialog(null, "Senha incorreta", "Alerta", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 			cont++;
@@ -100,21 +119,49 @@ public class Tela
 			if (!email.equals(null)) {
 				email_correto = ContaDAO.Email(email);		
 				if (email.equals("")) {					
-					JOptionPane.showMessageDialog(null, "Voce nao inseriu seu email");
+					JOptionPane.showMessageDialog(null, "Você não informou seu email", "Alerta", JOptionPane.ERROR_MESSAGE);
 				} 
 				if(email_correto==1){
 					conta.setEmail(email);
 					valor_correto_OK = 1;
 				} else {
-					JOptionPane.showMessageDialog(null, "Email invalido");
+					JOptionPane.showMessageDialog(null, "Email inválido", "Alerta", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		} while (valor_correto_OK==0);
 		String novaSenha = JOptionPane.showInputDialog(null, "Insira a sua senha nova: ");
 		conta.setNovaSenha(novaSenha);				
-		contaD.update(conta);
+		contaD.updateSenha(conta);
 		
 		JOptionPane.showMessageDialog(null, "Senha alterada com sucesso");
+	}
+	
+	public void novoEmail() {
+		String emailRecuperacao;
+		int valor_correto_OK = 0;
+		int email_correto = 0;
+		ContaD contaD = new ContaD();
+		Conta conta = new Conta();
+		do {
+			emailRecuperacao = (JOptionPane.showInputDialog(null, "Insira o seu email de recuperacao: "));
+			if (!emailRecuperacao.equals(null)) {
+				email_correto = ContaDAO.EmailRecuperacao(emailRecuperacao);		
+				if (emailRecuperacao.equals("")) {					
+					JOptionPane.showMessageDialog(null, "Você não informou seu email de recuperacao", "Alerta", JOptionPane.ERROR_MESSAGE);
+				} 
+				if(email_correto==1){
+					conta.setEmailRecuperacao(emailRecuperacao);
+					valor_correto_OK = 1;
+				} else {
+					JOptionPane.showMessageDialog(null, "Email inválido", "Alerta", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		} while (valor_correto_OK==0);
+		String novoEmail= JOptionPane.showInputDialog(null, "Insira seu novo email : ");
+		conta.setNovoEmail(novoEmail);
+		contaD.updateEmail(conta);
+		
+		JOptionPane.showMessageDialog(null, "Email alterado com sucesso");
 	}
 	
 

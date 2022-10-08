@@ -11,9 +11,30 @@ public class Conta {
 		private boolean verificado;
 		private boolean administrador;
 		private String apartamento;
-		private String bloco;
+		private Object bloco;
 		private String novaSenha;
+		private String emailRecuperacao;
+		private String novoEmail;
+		private String emailVerificacao;
 		
+		public String getEmailVerificacao() {
+			return emailVerificacao;
+		}
+		public void setEmailVerificacao(String emailVerificacao) {
+			this.emailVerificacao = emailVerificacao;
+		}
+		public String getNovoEmail() {
+			return novoEmail;
+		}
+		public void setNovoEmail(String novoEmail) {
+			this.novoEmail = novoEmail;
+		}
+		public String getEmailRecuperacao() {
+			return emailRecuperacao;
+		}
+		public void setEmailRecuperacao(String emailRecuperacao) {
+			this.emailRecuperacao = emailRecuperacao;
+		}
 		public String getNovaSenha() {
 			return novaSenha;
 		}
@@ -80,10 +101,10 @@ public class Conta {
 		public void setApartamento(String apartamento) {
 			this.apartamento = apartamento;
 		}
-		public String getBloco() {
+		public Object getBloco() {
 			return bloco;
 		}
-		public void setBloco(String bloco) {
+		public void setBloco(Object bloco) {
 			this.bloco = bloco;
 		}
 	}

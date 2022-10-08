@@ -100,5 +100,34 @@ public class ContaDAO {
 			}
 		return 0;
 	}
+
+	public static int EmailRecuperacao(String emailRecuperacao) {
+		ConexaoBD con = new ConexaoBD();
+		Connection c;
+		c = con.getConexao();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sqlQuery = null;
+		sqlQuery =  "SELECT * FROM conta WHERE email_recuperacao = '" + emailRecuperacao + "'";
+		
+		String[] emailRecuperacaoBD = new String[40];
+		
+		try {
+			ps = c.prepareStatement(sqlQuery);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				int x=0;
+				emailRecuperacaoBD[x] = rs.getString("email_recuperacao");
+				System.out.println("- " + emailRecuperacaoBD[x]);
+				if(emailRecuperacaoBD[x].equalsIgnoreCase(emailRecuperacao)) {
+					return 1;
+				}
+				x++;
+			}
+			} catch (SQLException e) {
+			e.printStackTrace();
+			}
+		return 0;
+	}
 	
 }

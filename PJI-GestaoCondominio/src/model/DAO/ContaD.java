@@ -6,8 +6,8 @@ import java.sql.PreparedStatement;
 import model.Condominio.Conta;
 
 public class ContaD {
-	public void save(Conta conta) {
-		String sql = "INSERT INTO Conta(id, nome, email, senha, cpf, rg, verificar_email, verificado, administrador, apartamento, bloco) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	public void save(Conta conta, boolean verificar_email, boolean verificado, boolean administrador) {
+		String sql = "INSERT INTO Conta(id, nome, email, senha, cpf, rg, verificar_email, verificado, email_recuperacao, administrador, apartamento, bloco) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			Connection conn = null;
 			PreparedStatement pstm = null;
 			
@@ -20,11 +20,12 @@ public class ContaD {
 						pstm.setString(4, conta.getSenha());
 						pstm.setString(5, conta.getCpf());
 						pstm.setString(6, conta.getRg());
-						pstm.setBoolean(7, false);
-						pstm.setBoolean(8, false);
-						pstm.setBoolean(9, false);
-						pstm.setString(10, conta.getApartamento());
-						pstm.setString(11, conta.getBloco());
+						pstm.setBoolean(7, verificar_email);
+						pstm.setBoolean(8, verificado);
+						pstm.setString(9, conta.getEmailRecuperacao());
+						pstm.setBoolean(10, administrador);
+						pstm.setString(11, conta.getApartamento());
+						pstm.setObject(12, conta.getBloco());
 						
 					pstm.execute();
 				}catch (Exception e) {
@@ -42,7 +43,7 @@ public class ContaD {
 					}
 				}
 	}
-	public void update(Conta conta) {
+	public void updateSenha(Conta conta) {
 		String sql = "UPDATE Conta SET senha = ? "+
 		"WHERE email = '"+conta.getEmail()+"'";
 			Connection conn = null;
@@ -53,12 +54,11 @@ public class ContaD {
 					conn = ConexaoBD.getConexao();
 					pstm = conn.prepareStatement(sql);
 						pstm.setString(1, conta.getNovaSenha());
-						// email q deseja atualizar
-						//pstm.setString(2, email);
-						
 						pstm.execute();
+						
 				}catch (Exception e) {
 					e.printStackTrace();
+					
 				}finally {
 					try {
 						if(pstm!=null) {
@@ -70,8 +70,70 @@ public class ContaD {
 					}catch (Exception e) {
 						e.printStackTrace();
 					}
-				}
-		
+				}	
 	}
+	
+	public void updateEmail(Conta conta) {
+		String sql = "UPDATE Conta SET email = ? "+
+		"WHERE email_recuperacao = '"+conta.getEmailRecuperacao()+"'";
+			Connection conn = null;
+			PreparedStatement pstm = null;
+			System.out.println("Conexão para alteração de email funcionando");
+		
+				try {
+					conn = ConexaoBD.getConexao();
+					pstm = conn.prepareStatement(sql);
+						pstm.setString(1, conta.getNovoEmail());						
+						pstm.execute();
+						
+				}catch (Exception e) {
+					e.printStackTrace();
+					
+				}finally {
+					try {
+						if(pstm!=null) {
+							pstm.close();
+						}
+						if(conn!=null) {
+							conn.close();
+						}
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+				}	
+				
+	
+	}
+	public void updateAdmin(Conta conta) {
+		String sql = "UPDATE Conta SET administrador = true "+
+		"WHERE email = '"+conta.getEmail()+"'";
+			Connection conn = null;
+			PreparedStatement pstm = null;
+			System.out.println("Conexão para alteração de sindico funcionando");
+		
+				try {
+					conn = ConexaoBD.getConexao();
+					pstm = conn.prepareStatement(sql);						
+						pstm.execute();
+						
+				}catch (Exception e) {
+					e.printStackTrace();
+					
+				}finally {
+					try {
+						if(pstm!=null) {
+							pstm.close();
+						}
+						if(conn!=null) {
+							conn.close();
+						}
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+				}	
+				
+	
+	}
+
 
 }

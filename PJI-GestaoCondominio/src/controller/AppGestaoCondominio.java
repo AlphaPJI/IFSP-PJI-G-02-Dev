@@ -9,6 +9,7 @@ public class AppGestaoCondominio
 		
 		Tela tela = new Tela();
 		
+		tela.boasVindas();		
 		tela.TelaLoginCadastro();
 
 		

@@ -7,36 +7,58 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import model.Condominio.Conta;
 import view.Tela;
 
 public class Cadastro {
-	public static void LoginOuCadastro(String codLoginCadastro){
-		String login = "L";
-		String registro = "C";
-		String morador = "M";
-		String sindico = "S";
-		if(codLoginCadastro.equalsIgnoreCase(login)) {
+	public static void LoginOuCadastro(int codLoginCadastro){
+		Cadastro cadastro = new Cadastro();
+		ContaDAO contaDAO = new ContaDAO();
+		Conta conta = new Conta();
+		ContaD contaD = new ContaD();
+		int email_correto = 0;
+		int valor_correto_OK = 0;
+		if(codLoginCadastro==0) {
 			Tela tela = new Tela();
 			tela.loginUsuario();
-		}else if(codLoginCadastro.equalsIgnoreCase(registro)) {
-			String codMoradorSindico = JOptionPane.showInputDialog(null, "Deseja cadastrar-se como Morador ou Sindico\n[M] para Morador\n[S] para Sindico");
-			if(codMoradorSindico.equalsIgnoreCase(morador)) {
-				Cadastro cadastro = new Cadastro();
-				cadastro.Cadastrar();
-			}else if(codMoradorSindico.equalsIgnoreCase(sindico)) {
-				JOptionPane.showMessageDialog(null, "Work In Progress...");
-				System.exit(0);
+		}else if(codLoginCadastro==1) {
+			String[] escCodMoradorSindico = { "Morador", "Sindico"};
+			int codMoradorSindico = JOptionPane.showOptionDialog(null, "Deseja cadastrar-se como Morador ou Sindico?", "Gestão de Condomio", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+			null, escCodMoradorSindico, escCodMoradorSindico[0]);
+			if(codMoradorSindico==0) {				
+				cadastro.CadastrarMorador();
+			}else if(codMoradorSindico==1) {
+				do {
+				String emailVerificacao = JOptionPane.showInputDialog(null, "Insira seu email para verificação: ");
+				email_correto = ContaDAO.Email(emailVerificacao);
+				if(!emailVerificacao.equals(null)) {
+					if(emailVerificacao.equals("")) {
+						JOptionPane.showMessageDialog(null, "Você não informou seu email", "Alerta", JOptionPane.ERROR_MESSAGE);
+					}else {
+					if(email_correto==1){
+						valor_correto_OK = 1;
+						conta.setEmail(emailVerificacao);
+						contaD.updateAdmin(conta);
+						JOptionPane.showMessageDialog(null, "Conta atualizada");
+					} else {
+						valor_correto_OK = 1;
+						cadastro.CadastrarSindico();
+					}
+					}
+				}
+				}while(valor_correto_OK==0);				
+				
+				
 			}else
-				JOptionPane.showMessageDialog(null, "Opção inválida");
-			
+				JOptionPane.showMessageDialog(null, "Alerta", "Opção inválida", JOptionPane.ERROR_MESSAGE);
 		}else
-		JOptionPane.showMessageDialog(null, "Opção inválida");
+		JOptionPane.showMessageDialog(null, "Alerta", "Opção inválida", JOptionPane.ERROR_MESSAGE);
 		System.exit(0);
 		
 	}
 	
-	public void Cadastrar(){
+	public void CadastrarMorador(){
 		
 		String nome = JOptionPane.showInputDialog(null, "Nome completo: ");
 		String email = JOptionPane.showInputDialog(null, "Email: ");
@@ -44,7 +66,9 @@ public class Cadastro {
 		String cpf = JOptionPane.showInputDialog(null, "Cpf (Sem caracteres especiais): ");
 		String rg = JOptionPane.showInputDialog(null, "Rg (Sem caracteres especiais): ");
 		String apartamento = JOptionPane.showInputDialog(null, "Apartamento: ");
-		String bloco = JOptionPane.showInputDialog(null, "Bloco: ");
+		String[] escBloco = {"Bloco A", "Bloco B", "Bloco C", "Bloco D", "Bloco E", "Bloco F", "Bloco G"};
+		Object bloco = JOptionPane.showInputDialog(null, "Escolha seu bloco: ", " ", JOptionPane.INFORMATION_MESSAGE, null, escBloco, escBloco[0]);
+		String emailRecuperacao = JOptionPane.showInputDialog(null, "Email para recuperação: ");
 		
 		Cadastro cadastro = new Cadastro();
 		int id = cadastro.id();
@@ -53,6 +77,7 @@ public class Cadastro {
 		
 		ContaD contaDao = new ContaD();
 		Conta contaD = new Conta();
+		
 		contaD.setId(id++);
 		contaD.setNome(nome);
 		contaD.setEmail(email);
@@ -61,10 +86,59 @@ public class Cadastro {
 		contaD.setRg(rg);
 		contaD.setVerificarEmail(true);
 		contaD.setVerificado(true);
+		contaD.setEmailRecuperacao(emailRecuperacao);
 		contaD.setAdministrador(false);
 		contaD.setApartamento(apartamento);
 		contaD.setBloco(bloco);
-		contaDao.save(contaD);
+		contaDao.save(contaD, contaD.isVerificarEmail(), contaD.isVerificado(), contaD.isAdministrador());
+		
+		System.out.println("Cadastro realizado");
+		
+		
+	}
+	public void CadastrarSindico(){
+		
+		JOptionPane.showMessageDialog(null, "Cadastre sua conta");
+		
+		String nome = JOptionPane.showInputDialog(null, "Nome completo: ");
+		String email = JOptionPane.showInputDialog(null, "Email: ");
+		String senha = JOptionPane.showInputDialog(null, "Senha: ");
+		String cpf = JOptionPane.showInputDialog(null, "Cpf (Sem caracteres especiais): ");
+		String rg = JOptionPane.showInputDialog(null, "Rg (Sem caracteres especiais): ");
+		String apartamento = JOptionPane.showInputDialog(null, "Apartamento: ");
+		String[] escBloco = {"Bloco A", "Bloco B", "Bloco C", "Bloco D", "Bloco E", "Bloco F", "Bloco G"};
+		Object bloco = JOptionPane.showInputDialog(null, "Escolha seu bloco: ", " ", JOptionPane.INFORMATION_MESSAGE, null, escBloco, escBloco[0]);
+		String emailRecuperacao = JOptionPane.showInputDialog(null, "Email para recuperação: ");
+		
+		Cadastro cadastro = new Cadastro();
+		int id = cadastro.id();
+		
+		System.out.println("-"+id++);
+		
+		ContaD contaDao = new ContaD();
+		Conta contaD = new Conta();
+		
+		contaD.setId(id++);
+		contaD.setNome(nome);
+		contaD.setEmail(email);
+		contaD.setSenha(senha);
+		contaD.setCpf(cpf);
+		contaD.setRg(rg);
+		contaD.setVerificarEmail(true);
+		contaD.setVerificado(true);
+		contaD.setEmailRecuperacao(emailRecuperacao);
+		contaD.setAdministrador(true);
+		contaD.setApartamento(apartamento);
+		contaD.setBloco(bloco);
+		contaDao.save(contaD, contaD.isVerificarEmail(), contaD.isVerificado(), contaD.isAdministrador());
+		
+		System.out.println("Cadastro realizado");
+		JOptionPane.showMessageDialog(null, "Conta cadastrada com sucesso");
+		
+		
+	}
+	
+	public void UpdateSindico() {
 		
 	}
 	
