@@ -1,8 +1,9 @@
+drop database GestaoCondominio;
 Create Database GestaoCondominio;
 Use GestaoCondominio;
 
 create table Conta (
-	id int NOT NULL,
+	id int NOT NULL AUTO_INCREMENT,
     nome varchar(100) NOT NULL,
     email varchar(100) NOT NULL,
     senha varchar(100) NOT NULL,
@@ -12,6 +13,7 @@ create table Conta (
     foto_icone text,
     verificar_email boolean NOT NULL,
     verificado boolean NOT NULL,
+    email_recuperacao varchar(100) NOT NULL,
     administrador boolean NOT NULL,
     apartamento int NOT NULL,
 	bloco varchar(50) NOT NULL,
@@ -107,47 +109,48 @@ create table Gastos (
     foreign key (id_gestao) references Gestao (id)
 );
 
-
-insert into Conta values (1, 'Joui Jouki', 'jouijojojouki@gmail.com', '$2a$12$jDQpGWZR/GEPShSQFm2pkeEeD2QTVWOzq4uMi.GE6K6pp/RVq3D6K', '48878704008', '385438928', '/conta/grande/1.jpg', '/conta/icone/1.jpg', true, true, false, 44, 'Bloco B');
-insert into Conta values (2, 'Cesar Cohen', 'angelofthenight@gmail.com', '$2a$12$gb0Ue9HcECiWQr4LhNZp7Og6rUkNT1Ka9GxBmgy2TCEiGFe/Mq0Hi', '25427928014', '296828105', '/conta/grande/2.jpg', '/conta/icone/2.jpg', true, true, false, 41, 'Bloco A');
-insert into Conta values (3, 'Thiago Fritz', 'éothigao@gmail.com', '$2a$12$dEXlIefVZ0YPYx1MyqeG7O95bHE8M3vbAR/oak80GmRDLABBV9e02', '40115911065', '107054383', '/conta/grande/3.jpg', '/conta/icone/3.jpg', false, true, false, 62, 'Bloco C');
-insert into Conta values (4, 'Elizabeth Webber', 'elizabethwebber@gmail.com', ' $2a$12$jniw8D7LnOBs2cAli89.iOzrD5RJHGr.I7UbGRPhUOFC.Z9Jwqe6G', '72040790004', '396061618', '/conta/grande/4.jpg', '/conta/icone/4.jpg', false, true, false, 62, 'Bloco C'); 
-insert into Conta values (5, 'Arthur Cervero', 'arthurzinhoguitarrista@gmail.com', '$2a$12$i1S0hLUrviOLC3g/78wjeu.L7l7aym8UWTOBmzjKfupugh5OPBaUi', '63328362029', '408225695', '/conta/grande/5.jpg', '/conta/icone/5.jpg', false, true, false, 41, 'Bloco A');
-insert into Conta values (6, 'Beatrice Portinari', 'beatriceporti@gmail.com', '$2a$12$.8itbDMTzmXj59cwNPnz..xnA46pq3jeVA3Xlhv9.wFgWFzAF4AoK', '67967074009', '214505935', '/conta/grande/6.jpg', '/conta/icone/6.jpg', true, true, false, 100, 'Bloco E');
-insert into Conta values (7, 'Tristan Monteiro', 'tristanlindo@gmail.com', '$2a$12$EKOn8YyH/xcHn39REZ8ff.F1s4aGZ/1uSYY.ps0RwsZ14TFQjTzEu', '87021736037', '148879809', '/conta/grande/7.jpg', '/conta/icone/7.jpg', true, true, false, 99, 'Bloco E');
-insert into Conta values (8, 'Erin Parker', 'parker.erin@gmail.com', '$2a$12$yQETGEJdnTm3JXN170MND.ZJigM3xIsiQJG7ofQvwMDLGaqEOQ5Z.', '56595646072', '206891052', '/conta/grande/8.jpg', '/conta/icone/8.jpg', false, true, false, 45, 'Bloco B');
-insert into Conta values (9, 'Dante Cristal', 'gaspar.dante@gmail.com', '$2a$12$zRYJRZSTqNJ7qw4taOR4K.1BUllOxuwN9xxuEvg/ThGg8F0SpLLeS', '94038650081', '458302545', '/conta/grande/9.jpg', '/conta/icone/9.jpg', true, true, false, 54, 'Bloco D');
-insert into Conta values (10, 'Jasmin Cristal', 'jasmincris@gmail.com', ' $2a$12$j92vDz.ZrBImgd/Akcg.au6ncgn8K1bK2F25XiLap0dz9wmPyFkB6', '42498311084', '191500495', '/conta/grande/10.jpg', '/conta/icone/10.jpg', true, true, false, 54, 'Bloco D');
-insert into Conta values (11, 'Carina Leone', 'leonecarina@gmail.com', '$2a$12$ouAxwDvTL9tn3EVLzT/oqOLrFyBdgkF3xVVnTJW4KYJyMYaUgKDcW', '92224906064', '113246699', '/conta/grande/11.jpg', '/conta/icone/11.jpg', false, true, false, 100, 'Bloco A');
-insert into Conta values (12, 'Antonio Pontevedra', 'balu12344@gmail.com', '$2a$12$yegQ/y8iFU7Aztigaqk6ouHLvVWOSPSJG4FPChJKQrfdk3r1rNTH.', '58422589001', '444981056', '/conta/grande/12.jpg', '/conta/icone/12.jpg', true, true, false, 10, 'Bloco B');
-insert into Conta values (13, 'Fernando Carvalho', 'fernandomusico@gmail.com', '$2a$12$ZTKo/d3OeoWG7.nb.2ekE.Ae7eZ87UTxiFb6HrrkifIvSFsvCaw3S', '01629462012', '108248628', '/conta/grande/13.jpg', '/conta/icone/13.jpg', false, true, false, 66, 'Bloco C');
-insert into Conta values (14, 'Luciano Carvalho', 'kian.luciano@gmail.com', '$2a$12$zzuA8nvbR1lr2c.RsTFDLeDivziKzUbatEg51rjVldP35tYvnb5rK', '91631577050', '108131002', '/conta/grande/14.jpg', '/conta/icone/14.jpg', true, true, false, 66, 'Bloco C');
-insert into Conta values (15, 'Agatha Volkemenn', 'transcender.agatha@gmail.com', '$2a$12$gjcI7ONCc7a2oKpVauwZEua.dQfkfLo6yWejkDcYW26lkn.PqmnLK', '96972605083', '201625477', '/conta/grande/15.jpg', '/conta/icone/15.jpg', false, true, false, 22, 'Bloco A');
-insert into Conta values (16, 'Alexsander Kothe', 'prof.alex@gmail.com', ' $2a$12$VpmdrASUVZFPWg4vcecfaeU5TRP52BbQbLxfADm2cPVM7cLGa7/.W', '43007408016', '164342473', '/conta/grande/16.jpg', '/conta/icone/16.jpg', true, true, false, 55, 'Bloco E');
-insert into Conta values (17, 'Cristopher Cohen', 'aranha.christopher@gmail.com', '$2a$12$RvrF6/Yzy7B8bQbYShH4z.h87m49T3GAiw6rTWvy0r5noLpft22K.', '57523155065', '429993985', '/conta/grande/17.jpg', '/conta/icone/17.jpg', false, true, false, 42, 'Bloco A');
-insert into Conta values (18, 'Daniel Hartmann', 'exbbb.daniel@gmail.com', '$2a$12$ivasb2.Wpgc8rlyCWrMMhurZ3J2E3JHXue4H7ioly/kWKECfdw27C', '15393638051', '219590126', '/conta/grande/18.jpg', '/conta/icone/18.jpg', false, true, false, 50, 'Bloco E');
-insert into Conta values (19, 'Rubens Naluti', 'rubens@gmail.com', '$2a$12$n.T0/PTVQJoi1vD2zWUV6.QRxpgVRAmUpqa/y4qjQ1o1j8jueU7lC', '43606842074', '292773304', '/conta/grande/19.jpg', '/conta/icone/19.jpg', true, true, false, 11, 'Bloco B');
-insert into Conta values (20, 'Mia Verissimo', 'verissimo.mia@gmail.com', ' $2a$12$Kv2U5RrPuCotZyEsYfx77On//npMGAJ.1TjN6VqYp/QP4R09vIZL6', '22140085000', '378430129', '/conta/grande/20.jpg', '/conta/icone/20.jpg', true, true, false, 22, 'Bloco A');
-insert into Conta values (21, 'Artemis Rodrigues', 'gamba1234@gmail.com', '$2a$12$Tz5ow0XuWKO4YuZm4mQuo.Xk2Z7zte/lV8xFZ0Bc.asymh3u1iEPm', '00058184007', '328149251', '/conta/grande/21.jpg', '/conta/icone/21.jpg', true, true, false, 49, 'Bloco E');
-insert into Conta values (22, 'Boris Lukic', 'boris.circo@gmail.com', '$2a$12$4ltgMVNXC3.5WxE.CxlTTOL1KT.Oy4PJ//mqUGn9GoU7yH6egT7cO', '98416447039', '126403508', '/conta/grande/22.jpg', '/conta/icone/22.jpg', true, true, false, 96, 'Bloco C');
-insert into Conta values (23, 'Damir Lukic', 'lukic.damir@gmail.com', '$2a$12$3ni9QLa8p643HDS3Y3B8IugyvUwhU1J37lSQd2Ili.qbdVTG2icCm', '27094368097', '330183047', '/conta/grande/23.jpg', '/conta/icone/23.jpg', false, true, false, 96, 'Bloco C');
-insert into Conta values (24, 'Gal Escripta', 'gal.dragoesmetalicos@gmail.com', '$2a$12$eVOhgeNr4ffw1k.yO/pM.OTeBjfKwpR7/qhD7vaLIznFU.uZ6DJoy', '62865754057', '208369223', '/conta/grande/24.jpg', '/conta/icone/24.jpg', false, true, false, 15, 'Bloco C');
-insert into Conta values (25, 'Theodore Bagwell', 'tbag@gmail.com', '$2a$12$4Dw.zvp/KjQXtNlnoV5fcecbjoz7gQnsXirN2rex27jXWoLzz0Jlu', '72738583075', '441451354', '/conta/grande/25.jpg', '/conta/icone/25.jpg', true, true, false, 12, 'Bloco C');
-insert into Conta values (26, 'Amelie Florence', 'amelieflorence@gmail.com', '$2a$12$T/iN9GfZiZLgvcGr.WQ3S.crcm9z/hfsi999wXol0P10nHfOTKWZy', '89060472071', '313535012', '/conta/grande/26.jpg', '/conta/icone/26.jpg', false, true, false, 74, 'Bloco D');
-insert into Conta values (27, 'Barbara Lima', 'lima.barbara@gmail.com', '$2a$12$tYv18t0lKlEaU6cuirPzT.74fTeRQtXvLVaoly.YzxluF/nawYmyK', '08997480073', '109081146', '/conta/grande/27.jpg', '/conta/icone/27.jpg', false, true, false, 59, 'Bloco D');
-insert into Conta values (28, 'Milo Castello', 'castello.m@gmail.com', '$2a$12$O2kCox0w7sJthu0b6CSuhOmbIiF1Fkq4gGfJU8fGMYzLlpHPCj2aG', '09334989009', '139728764', '/conta/grande/28.jpg', '/conta/icone/28.jpg', true, true, false, 60, 'Bloco D');
-insert into Conta values (29, 'Oliver Florence', 'oliverf@gmail.com', '$2a$12$Uc6y3NLheArGYyjIr9lkeuTboynKTYn5FtEuYeGRsxpSTkgKRCuk6', '90369924002', '339372953', '/conta/grande/29.jpg', '/conta/icone/29.jpg', true, true, false, 74, 'Bloco D');
-insert into Conta values (30, 'Aniela Ukryty', 'aniela.ukryty@gmail.com', '$2a$12$hUyK7mZ3RbhmcmbUKaUJwOh5LwcAHJvnkOZ3yoFfhWWk25BQ0tX1a', '67285794007', '339888404', '/conta/grande/30.jpg', '/conta/icone/30.jpg', true, true, false, 87, 'Bloco B');
-insert into Conta values (31, 'Ivete Beicur', 'gauderios.ivete@gmail.com', '$2a$12$fm4lkMurhcZcMh5bsRaZf.TjvqY9yw/G3.m0CoJ6xM4n7FfU8o4Va', '58443117010', '485858009', '/conta/grande/31.jpg', '/conta/icone/31.jpg', false, true, false, 41, 'Bloco A');
-insert into Conta values (32, 'Henry Lucas', 'henry.stn@gmail.com', '$2a$12$emRS9kvcRf1JtQCl49TNdezJbWMTWs.6RCHgnDrOXTCMjBO7EKjfy', '60383983096', '245005468', '/conta/grande/32.jpg', '/conta/icone/32.jpg', true, true, false, 66, 'Bloco D');
-insert into Conta values (33, 'Arnaldo Fritz', 'anfritz@gmail.com', '$2a$12$J0Xi/FireSkPfRxTsOXgdOYvuYpAZ/OK.gHC4ShS9qTBnxhTQWXR.', '16716165029', '194169017', '/conta/grande/33.jpg', '/conta/icone/33.jpg', false, true, false, 69, 'Bloco A');
-insert into Conta values (34, 'Mauro Nunes', 'granada.mauro@gmail.com', '$2a$12$ojh8274IOE1Y9GCaPKiiMOdweW46oiyheEg8kdVQsVZ.1fGxoL/o2', '92821071086', '437118253', '/conta/grande/34.jpg', '/conta/icone/34.jpg', true, true, false, 51, 'Bloco B');
-insert into Conta values (35, 'Maya Shizuri', 'shizuriaya@gmail.com', '$2a$12$2dF9T8bBhAJniriRGy6kmO4phWCaNI4/AweOhYSv8R/6OZfvMUW16', '63293444008', '331895377', '/conta/grande/35.jpg', '/conta/icone/35.jpg', true, true, false, 69, 'Bloco B');
-insert into Conta values (36, 'Leandro Torres', 'leandrot@gmail.com', '$2a$12$6BcgePD1OsZag.W/QIr4AOz1L/xQefd3snSLkedk7m4vZqFW8YB2C', '85213676006', '266228677', '/conta/grande/36.jpg', '/conta/icone/36.jpg', false, true, false, 75, 'Bloco B');
-insert into Conta values (37, 'Caio Fernandes', 'caiocaindo@gmail.com', '$2a$12$D9T4R65qlpE23GpecpZoTOLQ4dQYp1uj9AO7/lit10so3RliWJMHa', '28380053087', '249237143', '/conta/grande/37.jpg', '/conta/icone/37.jpg', false, true, false, 85, 'Bloco C');
-insert into Conta values (38, 'Guilherme Verissimo', 'verissimo.ordem@gmail.com', '$2a$12$GtbS7kfuhNzipj5w5etHBe0bVaM8QZbKjPDGsbRYle6DmKscoaiZe', '00967460093', '372571281', '/conta/grande/38.jpg', '/conta/icone/38.jpg', true, true, false, 22, 'Bloco A');
-insert into Conta values (39, 'Apolo Rodrigues', 'apolo.ro@gmail.com', '$2a$12$Ze9..sCj1cO3G.HxC859AOX9vzqFUIQok2/80mVa3y6tdeB62x7YO', '88897880037', '445792814', '/conta/grande/39.jpg', '/conta/icone/39.jpg', true, true, false, 49, 'Bloco E');
-insert into Conta values (40, 'Sidney Silva', 'sidney.sindico@gmail.com', '$2a$12$r7OaB6e1I5OIVqdEUlM9NeQAKLbu', '07626024060', '420916428', '/conta/grande/40.jpg', '/conta/icone/40.jpg', true, true, true, 10, 'Bloco A');
+-- update Conta set senha = '12345' where id=2;
+/*'$2a$12$gb0Ue9HcECiWQr4LhNZp7Og6rUkNT1Ka9GxBmgy2TCEiGFe/Mq0Hi'*/
+insert into Conta values (1, 'Joui Jouki', 'jouijojojouki@gmail.com', '$2a$12$jDQpGWZR/GEPShSQFm2pkeEeD2QTVWOzq4uMi.GE6K6pp/RVq3D6K', '48878704008', '385438928', '/conta/grande/1.jpg', '/conta/icone/1.jpg', true, true, 'A', false, 44, 'Bloco B');
+insert into Conta values (2, 'Cesar Cohen', 'angelofthenight@gmail.com', '12345', '25427928014', '296828105', '/conta/grande/2.jpg', '/conta/icone/2.jpg', true, true, 'kaiser@gmail.com', false, 41, 'Bloco A');
+insert into Conta values (3, 'Thiago Fritz', 'éothigao@gmail.com', '$2a$12$dEXlIefVZ0YPYx1MyqeG7O95bHE8M3vbAR/oak80GmRDLABBV9e02', '40115911065', '107054383', '/conta/grande/3.jpg', '/conta/icone/3.jpg', false, true, 'A', false, 62, 'Bloco C');
+insert into Conta values (4, 'Elizabeth Webber', 'elizabethwebber@gmail.com', ' $2a$12$jniw8D7LnOBs2cAli89.iOzrD5RJHGr.I7UbGRPhUOFC.Z9Jwqe6G', '72040790004', '396061618', '/conta/grande/4.jpg', '/conta/icone/4.jpg', false, true, 'A', false, 62, 'Bloco C'); 
+insert into Conta values (5, 'Arthur Cervero', 'arthurzinhoguitarrista@gmail.com', '$2a$12$i1S0hLUrviOLC3g/78wjeu.L7l7aym8UWTOBmzjKfupugh5OPBaUi', '63328362029', '408225695', '/conta/grande/5.jpg', '/conta/icone/5.jpg', false, true, 'A', false, 41, 'Bloco A');
+insert into Conta values (6, 'Beatrice Portinari', 'beatriceporti@gmail.com', '$2a$12$.8itbDMTzmXj59cwNPnz..xnA46pq3jeVA3Xlhv9.wFgWFzAF4AoK', '67967074009', '214505935', '/conta/grande/6.jpg', '/conta/icone/6.jpg', true, true, 'A', false, 100, 'Bloco E');
+insert into Conta values (7, 'Tristan Monteiro', 'tristanlindo@gmail.com', '$2a$12$EKOn8YyH/xcHn39REZ8ff.F1s4aGZ/1uSYY.ps0RwsZ14TFQjTzEu', '87021736037', '148879809', '/conta/grande/7.jpg', '/conta/icone/7.jpg', true, true, 'A', false, 99, 'Bloco E');
+insert into Conta values (8, 'Erin Parker', 'parker.erin@gmail.com', '$2a$12$yQETGEJdnTm3JXN170MND.ZJigM3xIsiQJG7ofQvwMDLGaqEOQ5Z.', '56595646072', '206891052', '/conta/grande/8.jpg', '/conta/icone/8.jpg', false, true, 'A', false, 45, 'Bloco B');
+insert into Conta values (9, 'Dante Cristal', 'gaspar.dante@gmail.com', '$2a$12$zRYJRZSTqNJ7qw4taOR4K.1BUllOxuwN9xxuEvg/ThGg8F0SpLLeS', '94038650081', '458302545', '/conta/grande/9.jpg', '/conta/icone/9.jpg', true, true, 'A', false, 54, 'Bloco D');
+insert into Conta values (10, 'Jasmin Cristal', 'jasmincris@gmail.com', ' $2a$12$j92vDz.ZrBImgd/Akcg.au6ncgn8K1bK2F25XiLap0dz9wmPyFkB6', '42498311084', '191500495', '/conta/grande/10.jpg', '/conta/icone/10.jpg', true, true, 'A', false, 54, 'Bloco D');
+insert into Conta values (11, 'Carina Leone', 'leonecarina@gmail.com', '$2a$12$ouAxwDvTL9tn3EVLzT/oqOLrFyBdgkF3xVVnTJW4KYJyMYaUgKDcW', '92224906064', '113246699', '/conta/grande/11.jpg', '/conta/icone/11.jpg', false, true, 'A', false, 100, 'Bloco A');
+insert into Conta values (12, 'Antonio Pontevedra', 'balu12344@gmail.com', '$2a$12$yegQ/y8iFU7Aztigaqk6ouHLvVWOSPSJG4FPChJKQrfdk3r1rNTH.', '58422589001', '444981056', '/conta/grande/12.jpg', '/conta/icone/12.jpg', true, true, 'A', false, 10, 'Bloco B');
+insert into Conta values (13, 'Fernando Carvalho', 'fernandomusico@gmail.com', '$2a$12$ZTKo/d3OeoWG7.nb.2ekE.Ae7eZ87UTxiFb6HrrkifIvSFsvCaw3S', '01629462012', '108248628', '/conta/grande/13.jpg', '/conta/icone/13.jpg', false, true, 'A', false, 66, 'Bloco C');
+insert into Conta values (14, 'Luciano Carvalho', 'kian.luciano@gmail.com', '$2a$12$zzuA8nvbR1lr2c.RsTFDLeDivziKzUbatEg51rjVldP35tYvnb5rK', '91631577050', '108131002', '/conta/grande/14.jpg', '/conta/icone/14.jpg', true, true, 'A', false, 66, 'Bloco C');
+insert into Conta values (15, 'Agatha Volkemenn', 'transcender.agatha@gmail.com', '$2a$12$gjcI7ONCc7a2oKpVauwZEua.dQfkfLo6yWejkDcYW26lkn.PqmnLK', '96972605083', '201625477', '/conta/grande/15.jpg', '/conta/icone/15.jpg', false, true, 'A', false, 22, 'Bloco A');
+insert into Conta values (16, 'Alexsander Kothe', 'prof.alex@gmail.com', ' $2a$12$VpmdrASUVZFPWg4vcecfaeU5TRP52BbQbLxfADm2cPVM7cLGa7/.W', '43007408016', '164342473', '/conta/grande/16.jpg', '/conta/icone/16.jpg', true, true, 'A', false, 55, 'Bloco E');
+insert into Conta values (17, 'Cristopher Cohen', 'aranha.christopher@gmail.com', '$2a$12$RvrF6/Yzy7B8bQbYShH4z.h87m49T3GAiw6rTWvy0r5noLpft22K.', '57523155065', '429993985', '/conta/grande/17.jpg', '/conta/icone/17.jpg', false, true, 'A', false, 42, 'Bloco A');
+insert into Conta values (18, 'Daniel Hartmann', 'exbbb.daniel@gmail.com', '$2a$12$ivasb2.Wpgc8rlyCWrMMhurZ3J2E3JHXue4H7ioly/kWKECfdw27C', '15393638051', '219590126', '/conta/grande/18.jpg', '/conta/icone/18.jpg', false, true, 'A', false, 50, 'Bloco E');
+insert into Conta values (19, 'Rubens Naluti', 'rubens@gmail.com', '$2a$12$n.T0/PTVQJoi1vD2zWUV6.QRxpgVRAmUpqa/y4qjQ1o1j8jueU7lC', '43606842074', '292773304', '/conta/grande/19.jpg', '/conta/icone/19.jpg', true, true, 'A', false, 11, 'Bloco B');
+insert into Conta values (20, 'Mia Verissimo', 'verissimo.mia@gmail.com', ' $2a$12$Kv2U5RrPuCotZyEsYfx77On//npMGAJ.1TjN6VqYp/QP4R09vIZL6', '22140085000', '378430129', '/conta/grande/20.jpg', '/conta/icone/20.jpg', true, true, 'A', false, 22, 'Bloco A');
+insert into Conta values (21, 'Artemis Rodrigues', 'gamba1234@gmail.com', '$2a$12$Tz5ow0XuWKO4YuZm4mQuo.Xk2Z7zte/lV8xFZ0Bc.asymh3u1iEPm', '00058184007', '328149251', '/conta/grande/21.jpg', '/conta/icone/21.jpg', true, true, 'A', false, 49, 'Bloco E');
+insert into Conta values (22, 'Boris Lukic', 'boris.circo@gmail.com', '$2a$12$4ltgMVNXC3.5WxE.CxlTTOL1KT.Oy4PJ//mqUGn9GoU7yH6egT7cO', '98416447039', '126403508', '/conta/grande/22.jpg', '/conta/icone/22.jpg', true, true, 'A', false, 96, 'Bloco C');
+insert into Conta values (23, 'Damir Lukic', 'lukic.damir@gmail.com', '$2a$12$3ni9QLa8p643HDS3Y3B8IugyvUwhU1J37lSQd2Ili.qbdVTG2icCm', '27094368097', '330183047', '/conta/grande/23.jpg', '/conta/icone/23.jpg', false, true, 'A', false, 96, 'Bloco C');
+insert into Conta values (24, 'Gal Escripta', 'gal.dragoesmetalicos@gmail.com', '$2a$12$eVOhgeNr4ffw1k.yO/pM.OTeBjfKwpR7/qhD7vaLIznFU.uZ6DJoy', '62865754057', '208369223', '/conta/grande/24.jpg', '/conta/icone/24.jpg', false, true, 'A', false, 15, 'Bloco C');
+insert into Conta values (25, 'Theodore Bagwell', 'tbag@gmail.com', '$2a$12$4Dw.zvp/KjQXtNlnoV5fcecbjoz7gQnsXirN2rex27jXWoLzz0Jlu', '72738583075', '441451354', '/conta/grande/25.jpg', '/conta/icone/25.jpg', true, true, 'A', false, 12, 'Bloco C');
+insert into Conta values (26, 'Amelie Florence', 'amelieflorence@gmail.com', '$2a$12$T/iN9GfZiZLgvcGr.WQ3S.crcm9z/hfsi999wXol0P10nHfOTKWZy', '89060472071', '313535012', '/conta/grande/26.jpg', '/conta/icone/26.jpg', false, true, 'A', false, 74, 'Bloco D');
+insert into Conta values (27, 'Barbara Lima', 'lima.barbara@gmail.com', '$2a$12$tYv18t0lKlEaU6cuirPzT.74fTeRQtXvLVaoly.YzxluF/nawYmyK', '08997480073', '109081146', '/conta/grande/27.jpg', '/conta/icone/27.jpg', false, true, 'A', false, 59, 'Bloco D');
+insert into Conta values (28, 'Milo Castello', 'castello.m@gmail.com', '$2a$12$O2kCox0w7sJthu0b6CSuhOmbIiF1Fkq4gGfJU8fGMYzLlpHPCj2aG', '09334989009', '139728764', '/conta/grande/28.jpg', '/conta/icone/28.jpg', true, true, 'A', false, 60, 'Bloco D');
+insert into Conta values (29, 'Oliver Florence', 'oliverf@gmail.com', '$2a$12$Uc6y3NLheArGYyjIr9lkeuTboynKTYn5FtEuYeGRsxpSTkgKRCuk6', '90369924002', '339372953', '/conta/grande/29.jpg', '/conta/icone/29.jpg', true, true, 'A', false, 74, 'Bloco D');
+insert into Conta values (30, 'Aniela Ukryty', 'aniela.ukryty@gmail.com', '$2a$12$hUyK7mZ3RbhmcmbUKaUJwOh5LwcAHJvnkOZ3yoFfhWWk25BQ0tX1a', '67285794007', '339888404', '/conta/grande/30.jpg', '/conta/icone/30.jpg', true, true, 'A', false, 87, 'Bloco B');
+insert into Conta values (31, 'Ivete Beicur', 'gauderios.ivete@gmail.com', '$2a$12$fm4lkMurhcZcMh5bsRaZf.TjvqY9yw/G3.m0CoJ6xM4n7FfU8o4Va', '58443117010', '485858009', '/conta/grande/31.jpg', '/conta/icone/31.jpg', false, true, 'A', false, 41, 'Bloco A');
+insert into Conta values (32, 'Henry Lucas', 'henry.stn@gmail.com', '$2a$12$emRS9kvcRf1JtQCl49TNdezJbWMTWs.6RCHgnDrOXTCMjBO7EKjfy', '60383983096', '245005468', '/conta/grande/32.jpg', '/conta/icone/32.jpg', true, true, 'A', false, 66, 'Bloco D');
+insert into Conta values (33, 'Arnaldo Fritz', 'anfritz@gmail.com', '$2a$12$J0Xi/FireSkPfRxTsOXgdOYvuYpAZ/OK.gHC4ShS9qTBnxhTQWXR.', '16716165029', '194169017', '/conta/grande/33.jpg', '/conta/icone/33.jpg', false, true, 'A', false, 69, 'Bloco A');
+insert into Conta values (34, 'Mauro Nunes', 'granada.mauro@gmail.com', '$2a$12$ojh8274IOE1Y9GCaPKiiMOdweW46oiyheEg8kdVQsVZ.1fGxoL/o2', '92821071086', '437118253', '/conta/grande/34.jpg', '/conta/icone/34.jpg', true, true, 'A', false, 51, 'Bloco B');
+insert into Conta values (35, 'Maya Shizuri', 'shizuriaya@gmail.com', '$2a$12$2dF9T8bBhAJniriRGy6kmO4phWCaNI4/AweOhYSv8R/6OZfvMUW16', '63293444008', '331895377', '/conta/grande/35.jpg', '/conta/icone/35.jpg', true, true, 'A', false, 69, 'Bloco B');
+insert into Conta values (36, 'Leandro Torres', 'leandrot@gmail.com', '$2a$12$6BcgePD1OsZag.W/QIr4AOz1L/xQefd3snSLkedk7m4vZqFW8YB2C', '85213676006', '266228677', '/conta/grande/36.jpg', '/conta/icone/36.jpg', false, true, 'A', false, 75, 'Bloco B');
+insert into Conta values (37, 'Caio Fernandes', 'caiocaindo@gmail.com', '$2a$12$D9T4R65qlpE23GpecpZoTOLQ4dQYp1uj9AO7/lit10so3RliWJMHa', '28380053087', '249237143', '/conta/grande/37.jpg', '/conta/icone/37.jpg', false, true, 'A', false, 85, 'Bloco C');
+insert into Conta values (38, 'Guilherme Verissimo', 'verissimo.ordem@gmail.com', '$2a$12$GtbS7kfuhNzipj5w5etHBe0bVaM8QZbKjPDGsbRYle6DmKscoaiZe', '00967460093', '372571281', '/conta/grande/38.jpg', '/conta/icone/38.jpg', true, true, 'A', false, 22, 'Bloco A');
+insert into Conta values (39, 'Apolo Rodrigues', 'apolo.ro@gmail.com', '$2a$12$Ze9..sCj1cO3G.HxC859AOX9vzqFUIQok2/80mVa3y6tdeB62x7YO', '88897880037', '445792814', '/conta/grande/39.jpg', '/conta/icone/39.jpg', true, true, 'A', false, 49, 'Bloco E');
+insert into Conta values (40, 'Sidney Silva', 'sidney.sindico@gmail.com', '$2a$12$r7OaB6e1I5OIVqdEUlM9NeQAKLbu', '07626024060', '420916428', '/conta/grande/40.jpg', '/conta/icone/40.jpg', true, true, 'A', true, 10, 'Bloco A');
 
 
 insert into Comprovante values (1, 1, '/comprovante/documento/1.jpg');
@@ -354,6 +357,9 @@ SELECT ch.observações as "Chamados_feitos", ch.resolvido
 FROM Conta co
 LEFT JOIN Chamado ch on  co.id = ch.id
 WHERE co.id = 2;
+
+update Conta SET administrador = false where nome = "Bea";
+select * from Conta;
 
 		 -- Integrantes --
 
