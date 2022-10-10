@@ -16,7 +16,14 @@ public class Conta {
 		private String emailRecuperacao;
 		private String novoEmail;
 		private String emailVerificacao;
+		private String senhaCriptografada;
 		
+		public String getSenhaCriptografada() {
+			return senhaCriptografada;
+		}
+		public void setSenhaCriptografada(String senhaCriptografada) {
+			this.senhaCriptografada = senhaCriptografada;
+		}
 		public String getEmailVerificacao() {
 			return emailVerificacao;
 		}
