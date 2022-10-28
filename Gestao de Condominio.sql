@@ -1,3 +1,4 @@
+
 Create Database GestaoCondominio;
 Use GestaoCondominio;
 
@@ -55,33 +56,24 @@ create table Chamado (
 create table Categoria (
 	id int NOT NULL,
     titulo varchar(100),
-    primary key (id)
-);
-
-
-create table Topico (
-	id int NOT NULL,
-    id_categoria int NOT NULL,
-    tema varchar(100),
     icone_p text,
     icone_g text,
     cor char(6),
-    primary key (id),
-    foreign key (id_categoria) references Categoria (id)
+    primary key (id)
 );
-
 
 create table Comentario (
 	id int NOT NULL,
     id_conta int NOT NULL,
     id_topico int NOT NULL,
     titulo varchar(100) NOT NULL,
+    topico varchar(100) NOT NULL,
     assunto varchar(300) NOT NULL,
     avaliação boolean NOT NULL,
     data_publicacao datetime NOT NULL,
     primary key (id),
     foreign key (id_conta) references Conta (id),
-    foreign key (id_topico) references Topico (id)
+    foreign key (id_categoria) references Categoria (id)
 );
 
 
