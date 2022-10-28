@@ -6,7 +6,6 @@ import model.DAO.Cadastro;
 import model.DAO.ContaD;
 import model.DAO.ContaDAO;
 import model.DAO.DBuser;
-import model.DAO.EncriptaDescripta;
 
 public class Tela 
 {
@@ -37,7 +36,7 @@ public class Tela
 		String usuario = ContaDAO.Usuario(conta.getEmail());
 		conta.setNome(usuario);
 		
-		JOptionPane.showMessageDialog(null, "Bem vindo/a "+conta.getNome()+"\nVocê foi autenticado com sucesso!");
+		JOptionPane.showMessageDialog(null, "Bem vindo(a) " +conta.getNome());
 	}
 	
 	public String obtemEmail() {
@@ -93,8 +92,7 @@ public class Tela
 			}
 			senha = (JOptionPane.showInputDialog(null, "Insira a sua senha: "));
 			if (!senha.equals(null)) {
-				String senhaCriptografada = EncriptaDescripta.Criptografia(senha);
-				senha_correta = ContaDAO.Senha(senhaCriptografada);
+				senha_correta = ContaDAO.Senha(senha);
 				if (senha.equals("")) {					
 					JOptionPane.showMessageDialog(null, "Você não informou sua senha", "Alerta", JOptionPane.ERROR_MESSAGE);
 				}

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
+
 import model.Condominio.Conta;
 import view.Tela;
 
@@ -49,9 +50,9 @@ public class Cadastro {
 				
 				
 			}else
-				JOptionPane.showMessageDialog(null, "Tela fechada", "Alerta", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Alerta", "Opção inválida", JOptionPane.ERROR_MESSAGE);
 		}else
-		JOptionPane.showMessageDialog(null, "Tela fechada", "Alerta", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Alerta", "Opção inválida", JOptionPane.ERROR_MESSAGE);
 		System.exit(0);
 		
 	}
@@ -68,8 +69,6 @@ public class Cadastro {
 		Object bloco = JOptionPane.showInputDialog(null, "Escolha seu bloco: ", " ", JOptionPane.INFORMATION_MESSAGE, null, escBloco, escBloco[0]);
 		String emailRecuperacao = JOptionPane.showInputDialog(null, "Email para recuperação: ");
 		
-		String senhaCriptografada = EncriptaDescripta.Criptografia(senha);
-		
 		Cadastro cadastro = new Cadastro();
 		int id = cadastro.id();
 		
@@ -81,7 +80,7 @@ public class Cadastro {
 		contaD.setId(id++);
 		contaD.setNome(nome);
 		contaD.setEmail(email);
-		contaD.setSenhaCriptografada(senhaCriptografada);
+		contaD.setSenha(senha);
 		contaD.setCpf(cpf);
 		contaD.setRg(rg);
 		contaD.setVerificarEmail(true);
