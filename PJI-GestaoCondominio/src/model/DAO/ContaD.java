@@ -17,7 +17,7 @@ public class ContaD {
 						pstm.setInt(1, conta.getId());
 						pstm.setString(2, conta.getNome());
 						pstm.setString(3, conta.getEmail());
-						pstm.setString(4, conta.getSenha());
+						pstm.setString(4, conta.getSenhaCriptografada());
 						pstm.setString(5, conta.getCpf());
 						pstm.setString(6, conta.getRg());
 						pstm.setBoolean(7, verificar_email);
@@ -28,6 +28,7 @@ public class ContaD {
 						pstm.setObject(12, conta.getBloco());
 						
 					pstm.execute();
+					System.out.println("Cadastro OK");
 				}catch (Exception e) {
 					e.printStackTrace();
 				}finally {

@@ -1,4 +1,5 @@
 package controller;
+import model.Forum.Forum;
 import view.Tela;
 
 public class AppGestaoCondominio 
@@ -11,6 +12,8 @@ public class AppGestaoCondominio
 		
 		tela.boasVindas();		
 		tela.TelaLoginCadastro();
+		
+		
 
 		
 	}

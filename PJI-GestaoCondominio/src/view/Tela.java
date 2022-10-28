@@ -5,7 +5,8 @@ import model.Condominio.Conta;
 import model.DAO.Cadastro;
 import model.DAO.ContaD;
 import model.DAO.ContaDAO;
-import model.DAO.DBuser;
+import model.DAO.EncriptaDescripta;
+import model.Forum.Forum;
 
 public class Tela 
 {
@@ -24,6 +25,26 @@ public class Tela
 		loginUsuario();
 	}
 	
+	public void escolhaTelaInicio() {
+		String[] escCodTelaInicio = { "Forum", "Gestão", "Notícias", "Chamados", "Conta" };
+		int codTelaInicio = JOptionPane.showOptionDialog(null, "TELA DE INÍCIO", "Gestão de Condominio",
+		JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+		null, escCodTelaInicio, escCodTelaInicio[0]);
+		if(codTelaInicio==0) {
+			Forum forum = new Forum();
+			forum.Forum();
+		}else if(codTelaInicio==1) {
+			JOptionPane.showMessageDialog(null, "Work in progress...", "Alerta", JOptionPane.ERROR_MESSAGE);
+		}else if(codTelaInicio==2) {
+			JOptionPane.showMessageDialog(null, "Work in progress....", "Alerta", JOptionPane.ERROR_MESSAGE);
+		}else if(codTelaInicio==3) {
+			JOptionPane.showMessageDialog(null, "Work in progress.....", "Alerta", JOptionPane.ERROR_MESSAGE);
+		}else if(codTelaInicio==4) {
+			JOptionPane.showMessageDialog(null, "Work in progress......", "Alerta", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	
 	public void loginUsuario ()
 	{		
 		Conta conta = new Conta();		
@@ -36,7 +57,8 @@ public class Tela
 		String usuario = ContaDAO.Usuario(conta.getEmail());
 		conta.setNome(usuario);
 		
-		JOptionPane.showMessageDialog(null, "Bem vindo(a) " +conta.getNome());
+		JOptionPane.showMessageDialog(null, "Bem vindo(a) "+conta.getNome()+"\nVocê foi autenticado com sucesso!");
+		escolhaTelaInicio();
 	}
 	
 	public String obtemEmail() {
@@ -92,7 +114,8 @@ public class Tela
 			}
 			senha = (JOptionPane.showInputDialog(null, "Insira a sua senha: "));
 			if (!senha.equals(null)) {
-				senha_correta = ContaDAO.Senha(senha);
+				String senhaCriptografada = EncriptaDescripta.Criptografia(senha);
+				senha_correta = ContaDAO.Senha(senhaCriptografada);
 				if (senha.equals("")) {					
 					JOptionPane.showMessageDialog(null, "Você não informou sua senha", "Alerta", JOptionPane.ERROR_MESSAGE);
 				}
@@ -130,7 +153,8 @@ public class Tela
 			}
 		} while (valor_correto_OK==0);
 		String novaSenha = JOptionPane.showInputDialog(null, "Insira a sua senha nova: ");
-		conta.setNovaSenha(novaSenha);				
+		String senhaCriptografada = EncriptaDescripta.Criptografia(novaSenha);
+		conta.setNovaSenha(senhaCriptografada);				
 		contaD.updateSenha(conta);
 		
 		JOptionPane.showMessageDialog(null, "Senha alterada com sucesso");
@@ -164,5 +188,6 @@ public class Tela
 		JOptionPane.showMessageDialog(null, "Email alterado com sucesso");
 	}
 	
+
 
 }
