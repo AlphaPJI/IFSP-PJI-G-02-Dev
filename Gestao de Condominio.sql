@@ -1,5 +1,5 @@
 
-Create Database GestaoCondominio;
+create database GestaoCondominio;
 Use GestaoCondominio;
 
 create table Conta (
@@ -65,7 +65,7 @@ create table Categoria (
 create table Comentario (
 	id int NOT NULL,
     id_conta int NOT NULL,
-    id_topico int NOT NULL,
+    id_categoria int NOT NULL,
     titulo varchar(100) NOT NULL,
     topico varchar(100) NOT NULL,
     assunto varchar(300) NOT NULL,
@@ -215,62 +215,38 @@ insert into Chamado values (14, 35, 'Brinquedos sendo jogados pela varanda', 'Vi
 insert into Chamado values (15, 40, 'Porteiro dormindo em serviço', 'Passei pela guarita e vi o porteiro dormindo', 'baixa', true);
 
 
-insert into Categoria values (1, 'Lazer');
-insert into Categoria values (2, 'Ideias');
-insert into Categoria values (3, 'Avisos');
-insert into Categoria values (4, 'Reclamações');
-insert into Categoria values (5, 'Festividades');
-insert into Categoria values (6, 'Conversa');
-insert into Categoria values (7, 'Debates');
-insert into Categoria values (8, 'Sugestões de melhorias');
-insert into Categoria values (9, 'Reuniões');
-insert into Categoria values (10, 'Outros');
+insert into Categoria values (1, 'Lazer','/iconecategoria/pequeno/1.jpg', '/iconecategoria/grande/1.jpg', '42f59e');
+insert into Categoria values (2, 'Ideias','/iconecategoria/pequeno/2.jpg', '/iconecategoria/grande/2.jpg', 'cc3d80');
+insert into Categoria values (3, 'Avisos','/iconecategoria/pequeno/3.jpg', '/iconecategoria/grande/3.jpg', '2c4a5e');
+insert into Categoria values (4, 'Reclamações','/iconecategoria/pequeno/4.jpg', '/iconecategoria/grande/4.jpg', 'a35a46');
+insert into Categoria values (5, 'Festividades','/iconecategoria/pequeno/5.jpg', '/iconecategoria/grande/5.jpg', '59080d');
+insert into Categoria values (6, 'Conversa','/iconecategoria/pequeno/6.jpg', '/iconecategoria/grande/6.jpg', '5f337a');
+insert into Categoria values (7, 'Debates','/iconecategoria/pequeno/7.jpg', '/iconecategoria/grande/7.jpg', 'a9c7c7');
+insert into Categoria values (8, 'Sugestões de melhorias','/iconecategoria/pequeno/8.jpg', '/iconecategoria/grande/8.jpg', 'f2c2e2');
+insert into Categoria values (9, 'Reuniões','/iconecategoria/pequeno/9.jpg', '/iconecategoria/grande/9.jpg', 'a8a24a');
+insert into Categoria values (10, 'Outros','/iconecategoria/pequeno/10.jpg', '/iconecategoria/grande/10.jpg', 'cc7523');
 
 
-insert into Topico values (1, 1, 'Esportes', '/iconetopico/pequeno/1.jpg', '/iconetopico/grande/1.jpg', '42f59e'); 
-insert into Topico values (2, 2, 'Estudos', '/iconetopico/pequeno/2.jpg', '/iconetopico/grande/2.jpg', 'cc3d80');
-insert into Topico values (3, 3, 'Noticias', '/iconetopico/pequeno/3.jpg', '/iconetopico/grande/3.jpg', '2c4a5e');
-insert into Topico values (4, 4, 'Ajuda', '/iconetopico/pequeno/4.jpg', '/iconetopico/grande/4.jpg', 'a35a46');
-insert into Topico values (5, 5, 'Feriados', '/iconetopico/pequeno/5.jpg', '/iconetopico/grande/5.jpg', '59080d');
-insert into Topico values (6, 6, 'Bate-papo', '/iconetopico/pequeno/6.jpg', '/iconetopico/grande/6.jpg', '5f337a');
-insert into Topico values (7, 7, 'Política', '/iconetopico/pequeno/7.jpg', '/iconetopico/grande/7.jpg', 'a9c7c7');
-insert into Topico values (8, 8, 'Caixa de Sugestões', '/iconetopico/pequeno/8.jpg', '/iconetopico/grande/8.jpg', 'f2c2e2');
-insert into Topico values (9, 9, 'Encontros', '/iconetopico/pequeno/9.jpg', '/iconetopico/grande/9.jpg', 'a8a24a');
-insert into Topico values (10, 10, 'Pets', '/iconetopico/pequeno/10.jpg', '/iconetopico/grande/10.jpg', 'cc7523');
-insert into Topico values (11, 1, 'Video-Games', '/iconetopico/pequeno/11.jpg', '/iconetopico/grande/11.jpg', 'c7c7ff');
-insert into Topico values (12, 2, 'Pesquisas', '/iconetopico/pequeno/12.jpg', '/iconetopico/grande/12.jpg', '466b48');
-insert into Topico values (13, 3, 'Avisos do Condomínio', '/iconetopico/pequeno/13.jpg', '/iconetopico/grande/13.jpg', '20032e');
-insert into Topico values (14, 4, 'Denuncias', '/iconetopico/pequeno/14.jpg', '/iconetopico/grande/14.jpg', 'ff002f');
-insert into Topico values (15, 5, 'Festas', '/iconetopico/pequeno/15.jpg', '/iconetopico/grande/15.jpg', '05f0d8');
-insert into Topico values (16, 6, 'Comentários de Séries', '/iconetopico/pequeno/16.jpg', '/iconetopico/grande/16.jpg', 'f04005');
-insert into Topico values (17, 7, 'Críticas', '/iconetopico/pequeno/17.jpg', '/iconetopico/grande/17.jpg', 'f005e8');
-insert into Topico values (18, 10, 'Ednaldo Pereira', '/iconetopico/pequeno/18.jpg', '/iconetopico/grande/18.jpg', 'eed4fc');
-insert into Topico values (19, 1, 'RPG', '/iconetopico/pequeno/19.jpg', '/iconetopico/grande/19.jpg', 'e4ffd6');
-insert into Topico values (20, 1, 'Musicas', '/iconetopico/pequeno/20.jpg', '/iconetopico/grande/20.jpg', 'fcd5bb');
-
-
-insert into Comentario values (1, 4, 15, 'festa sexta' , 'Quem topa uma festa sexta a noite no salão?', true, '2022-06-07 15:03:07');
-insert into Comentario values (2, 23, 7, 'novo sindico', 'Queria propor uma nova eleição, esse sindico não faz nem o minimo.', true, '2022-06-21 19:27:11');
-insert into Comentario values (3, 17, 2, 'clube do estudos', 'Estou organizando um clube de estudos pro enem, quem quizer fazer parte só me chamar.', true, '2022-03-11 08:32:29');
-insert into Comentario values (4, 40, 4, 'carteira sumiu', 'Minha carteira sumiu dentro do condominio, se alguem achar por favor devolver.', false, '2022-06-25 17:54:57');
-insert into Comentario values (5, 31, 19, 'Segredo na Ilha', 'Próximo sabado quero todo mundo no cinema do condominio para vermos Segredo na Ilha.', true, '2022-06-24 23:21:04');
-insert into Comentario values (6, 1, 9, 'correio elegante', 'Na festa junina que estamos elaborando faremos um correio elegante, quem quizer participar, R$0.50 cada.', true, '2022-06-09 16:15:14');
-insert into Comentario values (7, 2, 15, 'festa junina', 'Dia 25/06 faremos nossa tão esperada festa junina, espero a presença de todos!', true, '2022-06-08 12:00:07');
-insert into Comentario values (8, 5, 20, 'banda do condominio', 'Eu e a Ivete estamos começando uma nova banda, queria saber quem gostaria de entrar.', true, '2022-03-13 13:31:13');
-insert into Comentario values (9, 9, 11, 'campeonato de tetris', 'Ocorrerá no condominio um campeonato de Tetris dia 17/07, as inscrições já começaram.', true, '2022-06-27 16:28:07');
-insert into Comentario values (10, 12, 6, 'umbrella academy', 'ASOFIJAIKWUGEASJDGHASIUGTGRFAHWIFHASIYUGBDFASY ESSA NOVA TEMPORADA TA PERFEITA!!!!', false, '2022-06-25 18:26:07');
-insert into Comentario values (11, 29, 3, 'corta de água', 'A água será cortada das 18h ate as 20h do dia 30/06/2022, avisados.', false, '2022-06-28 12:00:07');
-insert into Comentario values (12, 35, 18, 'ednaldo pereira', 'Ednaldo Pereira', false, '2022-06-07 15:03:07');
-insert into Comentario values (13, 34, 10, 'brinquedos do parque dos pets', 'Alguns brinquedos sujaram nessa terça, algum animalzinho passou mal e o dono não limpou.', true, '2022-03-13 13:31:13');
-insert into Comentario values (14, 28, 10, 'barata da vizinha', 'Toda vez que eu chego em casa a barata da vizinha ta na minha cama.', true, '2022-06-24 23:21:04');
-insert into Comentario values (15, 11, 20, 'Playlists', 'Preciso de novas musicas/playlists, mandem as suas favoitas por favor', true, '2022-06-07 15:03:07');
-insert into Comentario values (16, 21, 14, 'Entrarão na minha casa', 'Roubarão minha casa, calvarão meu gato.', true, '2022-06-07 15:03:07');
-insert into Comentario values (17, 24, 14, 'Feche a porta', 'Então tranque bem as portas e janelas, #ajudei.', true, '2022-06-07 15:03:07');
-insert into Comentario values (18, 36, 1, 'Campeonato de quadribol', 'Preparados para o maior evento desse condominio?? Pois bem, vem ai Campeonato de Quadribol dia 27/06, as 18:00, TODOS, repito, TODOS são convidados, amém', true, '2022-06-07 15:03:07');
-insert into Comentario values (19, 19, 13, 'Aviso', 'Saber tudo é perder tudo', false, '2022-06-07 15:03:07');
-insert into Comentario values (20, 23, 12, 'Animais','Quantos de vocês possuem algum tipo de animalzinho? Quais?', true, '2022-06-07 15:03:07');
-insert into Comentario values (21, 2, 9, 'Encontro estranho' , 'Um cara chamado Kian entrou no condominio com uns papo mo estranho, toma cuidado ai gente', true, '2022-08-07 04:13:44');
-
+insert into Comentario values (1, 29, 1, 'Nova area de piscinas','Pscina', 'Senti muita falta de uma pscina nesse calor, será se tem como por uma no condominio?', false, '2022-10-21 12:00:07');
+insert into Comentario values (2, 35, 1, 'Area para pets', 'Animal', 'Precisamos de um local feito para nossos pets se divertirem,', true, '2022-06-07 15:03:07');
+insert into Comentario values (3, 34, 2, 'Nova cor do condominio', 'Reforma','Vocês não acham que o condominio precisava de uma renovada? Podemos mudar a cor dele, o que acham?', true, '2022-03-13 13:31:13');
+insert into Comentario values (4, 28, 2, 'Festa de halloween', 'Festa', 'Estavamos pensando em comemorar o halloween aqui no predio e queriamos saber a opnião de todos quanto a isso.', true, '2022-06-24 23:21:04');
+insert into Comentario values (5, 11, 3, 'Campeonato de quadribol', 'Esporte', 'Preparados para o maior evento desse condominio?? Pois bem, vem ai Campeonato de Quadribol dia 27/06, as 18:00, TODOS, repito, TODOS são convidados, amém', true, '2022-06-07 15:03:07');
+insert into Comentario values (6, 21, 3, 'Entrarão na minha casa', 'Roubarão minha casa','Calvarão meu gato.', true, '2022-06-07 15:03:07');
+insert into Comentario values (7, 24, 4, 'Novo sindico', 'Sindico','Queria propor uma nova eleição, esse sindico não faz nem o minimo.', true, '2022-06-21 19:27:11');
+insert into Comentario values (8, 36, 4, 'Cachorros bagunceiros', 'Sujeira', 'Alguns cachorros bagunçaram a entrada do condominio, tem lava para todo lado, tentem segurar seus cachorros em dia de chuva por favor.', true, '2022-08-07 04:13:44');
+insert into Comentario values (9, 19, 5, 'Festa de aniversario do condominio', 'Aniversario', 'Nesse sabado vamos comemorar o aniversario do condominio, esperamos a presença de todos.', false, '2022-06-07 15:03:07');
+insert into Comentario values (10, 23, 5, 'Festa de ano novo', 'Ano novo', 'Esse ano vai ter festa de ano novo?', true, '2022-06-07 15:03:07');
+insert into Comentario values (11, 19, 6, "Titulo.", "Tópico.", "Assunto.", true, '2022-09-28 15:03:07');
+insert into Comentario values (12, 12, 6, "Monamour do Balu.", "Lanches", "Como todos sabemos, nada supera o Monamour do Balu.", true, '2022-10-21 22:12:03');
+insert into Comentario values (13, 40, 7, "O Melhor Síndico.", "Imobiliária.", "Sidney é o melhor, oferecimento Imobiliária Fachada.", true, '2022-09-15 11:03:07');
+insert into Comentario values (14, 15, 7, "Segredo.", "Bate-papo.", "Meia noite te conto.", false, '2022-10-14 23:59:59');
+insert into Comentario values (15, 6, 8, "Pouca Iluminação.", "Críticas.", "O condomínio é muito escuro de noite, por favor arrumem mais lâmpadas!", true, '2022-09-28 15:03:07');
+insert into Comentario values (16, 1, 8, "Sombras estranhas.", "Críticas.", "Tem umas sombras se mechendo no meu andar, acho que está precisando de dedetização", false, '2022-10-30 11:02:02');
+insert into Comentario values (17, 38, 9, "Precisamos nos reunir.", "RPG.", "Reunião pra jogar RPG, quem morrer primeiro tem que pagar o ifood.", true, '2022-09-28 18:36:31');
+insert into Comentario values (18, 16, 9, "Maratona de Power Rangers.", "Festas.", "Geral vem maratorar 20 temporadas de Power Rangers!", false, '2022-10-12 15:03:07');
+insert into Comentario values (19, 2, 10, "Culto hoje a noite.", "Ednaldo Pereira.", "Venha cultuar nosso grande salvador Ednaldo Pereira hoje a noite!", true, '2022-09-13 21:29:45');
+insert into Comentario values (20, 24, 10, "Clash.", "Video-Games.", "Preciso de um time pra jogar clash no lol hoje.", false, '2022-10-30 18:22:12');
 
 insert into Gestao values (1, 38, false, '2019-03-14', '2022-03-15');
 insert into Gestao values (2, 40, true, '2022-03-15', '2025-05-15');
@@ -299,18 +275,16 @@ insert into Gastos values (20, 2, 'Decoracao natalina', 400.00, 'Shopee', 'Decor
 
 
 -- Comentários no fórum
-SELECT t.tema, c.titulo, c.assunto, c.data_publicacao, co.nome, co.foto_icone, co.apartamento, co.bloco, t.tema
+SELECT c.topico, c.titulo, c.assunto, c.data_publicacao, co.nome, co.foto_icone, co.apartamento, co.bloco
 FROM Comentario c
 INNER JOIN Conta co ON c.id_conta = co.id
-INNER JOIN Topico t ON c.id_topico = t.id
-ORDER BY t.tema;
+ORDER BY c.data_publicacao;
 
--- Comentários de um único topíco no fórum
-SELECT t.tema, c.titulo, c.assunto, c.data_publicacao, co.nome, co.foto_icone, co.apartamento, co.bloco, t.tema
+-- Comentários de uma única categoria no fórum
+SELECT  c.topico, c.titulo, c.assunto, c.data_publicacao, co.nome, co.foto_icone, co.apartamento, co.bloco
 FROM Comentario c
 INNER JOIN Conta co ON c.id_conta = co.id
-INNER JOIN Topico t ON c.id_topico = t.id
-WHERE t.id = 9
+WHERE c.id_categoria = 9
 ORDER BY c.data_publicacao;
 
 -- Gastos do síndico durante seu período de atuação
