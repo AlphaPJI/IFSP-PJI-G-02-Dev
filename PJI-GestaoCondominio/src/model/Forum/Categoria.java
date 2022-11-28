@@ -10,6 +10,7 @@ import model.Condominio.ForumGS;
 import model.DAO.ConexaoBD;
 
 public class Categoria {
+	
 	public static List<ForumGS> getCategoria(){
 		String sql = "SELECT * FROM Categoria";
 		

@@ -31,8 +31,8 @@ public class Tela
 		JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
 		null, escCodTelaInicio, escCodTelaInicio[0]);
 		if(codTelaInicio==0) {
-			Forum forum = new Forum();
-			forum.Forum();
+			TelaForum telaForum = new TelaForum();
+			telaForum.escolhaCategoria();
 		}else if(codTelaInicio==1) {
 			JOptionPane.showMessageDialog(null, "Work in progress...", "Alerta", JOptionPane.ERROR_MESSAGE);
 		}else if(codTelaInicio==2) {

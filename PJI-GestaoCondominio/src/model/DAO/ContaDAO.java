@@ -82,7 +82,7 @@ public class ContaDAO {
 		sqlQuery =  "SELECT * FROM conta WHERE senha = '" + senha + "'";
 		
 		String[] senhaBD = new String[40];
-		
+		System.out.println("aaaaaaaaaa" + senha);
 		try {
 			ps = c.prepareStatement(sqlQuery);
 			rs = ps.executeQuery();
